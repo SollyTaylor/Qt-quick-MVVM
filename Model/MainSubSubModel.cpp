@@ -1,4 +1,4 @@
-#include "MainSubSubModel.h"
+﻿#include "MainSubSubModel.h"
 #include "ModelNames.h"
 MainSubSubModel::MainSubSubModel(QObject *parent) : QObject(parent)
 {
@@ -12,5 +12,8 @@ QString MainSubSubModel::subSubData() const
 
 void MainSubSubModel::setSubSubData(const QString &data)
 {
-    data_ = data;
+    if (data != data_) {
+        data_ = data;
+        emit subSubDataChanged(data);
+    }
 }

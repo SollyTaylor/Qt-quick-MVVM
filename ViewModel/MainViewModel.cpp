@@ -1,4 +1,5 @@
-#include "MainViewModel.h"
+﻿#include "MainViewModel.h"
+#include "MainSubModel.h"
 
 MainViewModel::MainViewModel(MainModel *mainModel)
 {
@@ -19,6 +20,16 @@ QString MainViewModel::GetSourceValue() const
     return _mainModel->GetSourceValue();
 }
 
+QString MainViewModel::GetSubData() const
+{
+    return QString();
+}
+
+QString MainViewModel::GetSubSubData() const
+{
+    return QString();
+}
+
 QString MainViewModel::GetDestinationValue() const
 {
     return _mainModel->GetDestinationValue();
@@ -34,7 +45,23 @@ void MainViewModel::SetSourceValue(QString &arg)
         _mainModel->SetSourceValue(arg);
         SourceChangedEvent(arg);
         SetDestinationValue(arg);
+
+        auto submodel = static_cast<MainSubModel*>(_mainModel->subModel());
+        submodel->setSubData(arg);
     }
+}
+
+void MainViewModel::SetSubData(QString &arg)
+{
+    auto submodel = static_cast<MainSubModel*>(_mainModel->subModel());
+    if (submodel->subData() != arg) {
+
+    }
+}
+
+void MainViewModel::SetSubSubData(QString &arg)
+{
+
 }
 
 void MainViewModel::SetDestinationValue(QString &arg)
@@ -43,4 +70,5 @@ void MainViewModel::SetDestinationValue(QString &arg)
         _mainModel->SetDestinationValue(arg);
         DestinationChangedEvent(arg);
     }
+
 }

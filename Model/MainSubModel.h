@@ -1,4 +1,4 @@
-#ifndef MAINSUBMODEL_H
+﻿#ifndef MAINSUBMODEL_H
 #define MAINSUBMODEL_H
 
 #include <QObject>
@@ -7,9 +7,7 @@ class MainSubSubModel;
 class MainSubModel : public QObject
 {
     Q_OBJECT
-
     Q_PROPERTY(QString subData READ subData WRITE setSubData NOTIFY subDataChanged)
-
     Q_PROPERTY(QObject *subsubModel READ subsubModel NOTIFY subsubModelChanged)
 public:
     explicit MainSubModel(QObject *parent = nullptr);
@@ -18,11 +16,15 @@ public:
     void setSubData(const QString &subData);
 
     QObject *subsubModel();
+    MainSubSubModel* getSubSubModel();
 signals:
 
-    void subDataChanged();
+    void subDataChanged(QString);
     void subsubModelChanged();
+
 public slots:
+
+    void slot_update_subsubmodel(QString arg);
 
 private:
 

@@ -1,4 +1,4 @@
-#ifndef MAINMODEL_H
+﻿#ifndef MAINMODEL_H
 #define MAINMODEL_H
 
 #include <QCryptographicHash>
@@ -8,6 +8,7 @@ class MainSubModel;
 class MainModel : public QObject {
     Q_OBJECT
     Q_PROPERTY(QObject* subModel READ subModel NOTIFY subModelChanged)
+
 private:
 
   QString _sourceValue;
@@ -27,8 +28,14 @@ public:
 
   void SetDestinationValue(const QString &value);
   QObject *subModel();
+
 signals:
   void subModelChanged();
+
+public slots:
+
+    void slot_submodel_changed(QString arg);
+
 private:
 
   QString HashValue(const QString &value);

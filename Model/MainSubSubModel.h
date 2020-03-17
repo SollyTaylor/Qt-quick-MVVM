@@ -16,7 +16,7 @@ public:
 
 signals:
 
-    void subSubDataChanged();
+    void subSubDataChanged(QString);
 
 public slots:
 
