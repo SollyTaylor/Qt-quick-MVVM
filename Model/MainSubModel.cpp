@@ -17,3 +17,8 @@ void MainSubModel::setSubData(const QString &data)
 {
     data_ = data;
 }
+
+QObject *MainSubModel::subsubModel()
+{
+    return subSubModel_;
+}

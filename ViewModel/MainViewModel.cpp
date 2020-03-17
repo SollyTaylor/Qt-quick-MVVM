@@ -1,4 +1,4 @@
-﻿#include "MainViewModel.h"
+#include "MainViewModel.h"
 
 MainViewModel::MainViewModel(MainModel *mainModel)
 {
@@ -22,6 +22,10 @@ QString MainViewModel::GetSourceValue() const
 QString MainViewModel::GetDestinationValue() const
 {
     return _mainModel->GetDestinationValue();
+}
+
+QObject *MainViewModel::mainModel() {
+    return _mainModel;
 }
 
 void MainViewModel::SetSourceValue(QString &arg)
