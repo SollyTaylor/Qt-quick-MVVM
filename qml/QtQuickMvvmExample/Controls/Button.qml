@@ -5,7 +5,7 @@ Item {
     width: 200
     height: 20
     signal click
-
+    property alias text : text1.text
     Rectangle {
         id: buttonLayout
         width: button.width

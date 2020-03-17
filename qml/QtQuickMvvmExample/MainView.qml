@@ -1,4 +1,4 @@
-﻿import QtQuick 2.0
+import QtQuick 2.0
 import "Controls"
 
 Rectangle {
@@ -39,7 +39,7 @@ Rectangle {
         y: srcTxt.y + 50
         width: 348
         height: 27;
-//        Binding { target: model; property: "sourceValue"; value: srcTbx.text }
+        Binding { target: subModel; property: "subData"; value: subTbx.text }
 //        text: model.destinationValue // ?? TODO
     }
 
@@ -57,7 +57,7 @@ Rectangle {
         y: srcTxt.y + 100
         width: 348
         height: 27;
-//        Binding { target: model; property: "sourceValue"; value: srcTbx.text }
+        Binding { target: subSubModel; property: "subSubData"; value: subSubTbx.text }
 //        text: model.destinationValue  // ?? TODO
     }
 
@@ -85,5 +85,17 @@ Rectangle {
         width: 113
         height: 37
         onClick: model.clearCommand()
+    }
+    Button {
+        x: srcTbx.x + 200
+        y: srcTxt.y + 400
+        width: 113
+        height: 37
+        text: "show"
+        onClick:  {
+            console.log(model.sourceValue)
+            console.log(subModel.subData)
+            console.log(subSubModel.subSubData)
+        }
     }
 }

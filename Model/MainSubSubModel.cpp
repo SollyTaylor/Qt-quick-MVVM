@@ -1,8 +1,8 @@
-﻿#include "MainSubSubModel.h"
-
+#include "MainSubSubModel.h"
+#include "ModelNames.h"
 MainSubSubModel::MainSubSubModel(QObject *parent) : QObject(parent)
 {
-
+    setObjectName(mainSubSubModelStr);
 }
 
 QString MainSubSubModel::subSubData() const

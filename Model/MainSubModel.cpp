@@ -1,11 +1,11 @@
-﻿#include "MainSubModel.h"
+#include "MainSubModel.h"
 #include "MainSubSubModel.h"
-
+#include "ModelNames.h"
 MainSubModel::MainSubModel(QObject *parent)
     : QObject(parent)
     , subSubModel_(new MainSubSubModel(this))
 {
-
+    setObjectName(mainSubModelStr);
 }
 
 QString MainSubModel::subData() const

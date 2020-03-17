@@ -1,11 +1,9 @@
-﻿#include "MainModel.h"
+#include "MainModel.h"
 #include "MainSubModel.h"
-
+#include "ModelNames.h"
 MainModel::MainModel(QObject *parent)
-    : QObject(parent)
-    , _subModel(new MainSubModel(this))
-{
-
+    : QObject(parent), _subModel(new MainSubModel(this)) {
+    setObjectName(mainModelStr);
 }
 
 QString MainModel::GetSourceValue() const { return _sourceValue; }
