@@ -3,7 +3,7 @@ import "Controls"
 
 Rectangle {
     width: 600
-    height: 480
+    height: 380
     color: "#c4c4c4"
 
     // 1st Source
@@ -66,7 +66,7 @@ Rectangle {
 
     Text {
         x: srcTxt.x
-        y: srcTxt.y + 300
+        y: srcTxt.y + 200
         text: "Encrypted"
         font.pixelSize: 12
     }
@@ -74,7 +74,7 @@ Rectangle {
     Text {
         id: destinationTbx
         x: srcTbx.x
-        y: srcTxt.y + 300
+        y: srcTxt.y + 200
         width: 348
         height: 27;
         text: mainModel.encrypted
@@ -82,7 +82,7 @@ Rectangle {
 
     Button {
         x: srcTbx.x
-        y: srcTxt.y + 400
+        y: srcTxt.y + 250
         width: 113
         height: 37
         onClick: mainModel.clearCommand()
@@ -90,7 +90,7 @@ Rectangle {
 
     Button {
         x: srcTbx.x + 200
-        y: srcTxt.y + 400
+        y: srcTxt.y + 250
         width: 113
         height: 37
         text: "show"
