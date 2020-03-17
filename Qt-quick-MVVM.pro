@@ -52,5 +52,6 @@ HEADERS += \
     Model/MainModel.h \
     Model/MainSubModel.h \
     Model/MainSubSubModel.h \
+    Model/ModelNames.h \
     ViewModel/MainViewModel.h \
     qmlapplicationviewer/qmlapplicationviewer.h
