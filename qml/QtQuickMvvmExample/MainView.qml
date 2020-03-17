@@ -1,4 +1,4 @@
-import QtQuick 2.0
+﻿import QtQuick 2.0
 import "Controls"
 
 Rectangle {
@@ -22,6 +22,7 @@ Rectangle {
         width: 348
         height: 27;
         Binding { target: model; property: "sourceValue"; value: srcTbx.text }
+        Binding { target: srcTbx; property: "text"; value: model.sourceValue  }
     }
 
 
@@ -41,6 +42,7 @@ Rectangle {
         height: 27;
 //        Binding { target: subModel; property: "subData"; value: subTbx.text }
         Binding { target: model.mainModel.subModel; property: "subData"; value: subTbx.text }
+        Binding { target: subTbx; property: "text"; value: model.mainModel.subModel.subData }
 //        text: model.destinationValue // ?? TODO
     }
 
@@ -59,6 +61,7 @@ Rectangle {
         width: 348
         height: 27;
         Binding { target: model.mainModel.subModel.subsubModel; property: "subSubData"; value: subSubTbx.text }
+        Binding { target: subSubTbx; property: "text"; value: model.mainModel.subModel.subsubModel.subSubData }
 //        text: model.destinationValue  // ?? TODO
     }
 
