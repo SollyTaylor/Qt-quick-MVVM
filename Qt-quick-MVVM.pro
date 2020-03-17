@@ -19,6 +19,10 @@ INCLUDEPATH += \
             ./qmlapplicationviewer
 
 SOURCES += \
+        Model/MainModel.cpp \
+        Model/MainSubModel.cpp \
+        Model/MainSubSubModel.cpp \
+        ViewModel/MainViewModel.cpp \
         main.cpp \
         qmlapplicationviewer/qmlapplicationviewer.cpp
 
@@ -46,5 +50,7 @@ DISTFILES += \
 
 HEADERS += \
     Model/MainModel.h \
+    Model/MainSubModel.h \
+    Model/MainSubSubModel.h \
     ViewModel/MainViewModel.h \
     qmlapplicationviewer/qmlapplicationviewer.h

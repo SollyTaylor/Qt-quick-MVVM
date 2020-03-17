@@ -1,4 +1,4 @@
-#ifndef MAINVIEWMODEL_H
+﻿#ifndef MAINVIEWMODEL_H
 #define MAINVIEWMODEL_H
 
 #include "../Model/MainModel.h"
@@ -9,57 +9,30 @@ class MainViewModel : public QObject
 
 private:
     // main model
-    MainModel _mainModel;
+    MainModel* _mainModel;
 
     // declaration of source property
-    Q_PROPERTY (QString sourceValue READ GetSourceValue WRITE SetSourceValue NOTIFY SourceChangedEvent);
+    Q_PROPERTY (QString sourceValue READ GetSourceValue WRITE SetSourceValue NOTIFY SourceChangedEvent)
 
     // declaration of destination property
     Q_PROPERTY (QString destinationValue READ GetDestinationValue WRITE SetDestinationValue
-                NOTIFY DestinationChangedEvent);
+                NOTIFY DestinationChangedEvent)
 
 public:
-    explicit MainViewModel(const MainModel& mainModel)
-    {
-        _mainModel = mainModel;
-    }
+    explicit MainViewModel(MainModel* mainModel);
 
-    virtual ~MainViewModel()
-    { }
+    virtual ~MainViewModel();
 
-    Q_INVOKABLE void clearCommand() // clear command
-    {
-        QString emptyString = "";        
-        SetSourceValue(emptyString);
-    }
+    Q_INVOKABLE void clearCommand();
 
-    QString GetSourceValue() const
-    {
-        return _mainModel.GetSourceValue();
-    }
+    QString GetSourceValue() const;
 
-    QString GetDestinationValue() const
-    {
-        return _mainModel.GetDestinationValue();
-    }
+    QString GetDestinationValue() const;
 
 public slots:
-    void SetSourceValue(QString& arg)
-    {
-        if (_mainModel.GetSourceValue() != arg) {
-            _mainModel.SetSourceValue(arg);
-            SourceChangedEvent(arg);
-            SetDestinationValue(arg);
-        }
-    }
+    void SetSourceValue(QString& arg);
 
-    void SetDestinationValue(QString& arg)
-    {
-        if (_mainModel.GetDestinationValue() != arg) {
-            _mainModel.SetDestinationValue(arg);
-            DestinationChangedEvent(arg);
-        }
-    }
+    void SetDestinationValue(QString& arg);
 
 signals:
     void SourceChangedEvent(QString& arg);

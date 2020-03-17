@@ -1,4 +1,4 @@
-#include "ViewModel/MainViewModel.h"
+﻿#include "ViewModel/MainViewModel.h"
 #include "qmlapplicationviewer.h"
 #include <QApplication>
 #include <QQmlContext>
@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
 
   QmlApplicationViewer viewer;
 
-  MainModel mainModel;
+  MainModel* mainModel = new MainModel(&app);
 
   viewer.rootContext()->setContextProperty("model",
                                            new MainViewModel(mainModel));

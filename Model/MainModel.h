@@ -1,37 +1,34 @@
-#ifndef MAINMODEL_H
+﻿#ifndef MAINMODEL_H
 #define MAINMODEL_H
 
 #include <QCryptographicHash>
 #include <QObject>
 
-class MainModel {
+class MainSubModel;
+class MainModel : public QObject {
+    Q_OBJECT
 private:
+
   QString _sourceValue;
   QString _destinationValue;
+  MainSubModel* _subModel;
 
 public:
+
+  explicit MainModel(QObject* parent);
   virtual ~MainModel() {}
 
-  QString GetSourceValue() const { return _sourceValue; }
+  QString GetSourceValue() const;
 
-  void SetSourceValue(const QString &value) { _sourceValue = value; }
+  void SetSourceValue(const QString &value);
 
-  QString GetDestinationValue() const { return _destinationValue; }
+  QString GetDestinationValue() const;
 
-  void SetDestinationValue(const QString &value) {
-    if (!value.isEmpty()) {
-      _destinationValue = HashValue(value);
-    } else {
-      _destinationValue = value;
-    }
-  }
+  void SetDestinationValue(const QString &value);
 
 private:
-  QString HashValue(const QString &value) {
-    return QString(
-        QCryptographicHash::hash(value.toUtf8(), QCryptographicHash::Md5)
-            .toHex());
-  }
+
+  QString HashValue(const QString &value);
 };
 
 #endif // MAINMODEL_H
