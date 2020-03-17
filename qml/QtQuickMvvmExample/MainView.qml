@@ -11,7 +11,7 @@ Rectangle {
         id : srcTxt
         x: 50
         y: 20
-        text: "1st Source Text"
+        text: "Main"
         font.pixelSize: 12
     }
 
@@ -21,8 +21,8 @@ Rectangle {
         y: srcTxt.y
         width: 348
         height: 27;
-        Binding { target: model; property: "sourceValue"; value: srcTbx.text }
-        Binding { target: srcTbx; property: "text"; value: model.sourceValue  }
+        Binding { target: mainModel; property: "data"; value: srcTbx.text }
+        Binding { target: srcTbx; property: "text"; value: mainModel.data  }
     }
 
 
@@ -30,7 +30,7 @@ Rectangle {
     Text {
         x: srcTxt.x + 20
         y: srcTxt.y + 50
-        text: "2nd Sub Text"
+        text: "SubData"
         font.pixelSize: 12
     }
 
@@ -40,17 +40,15 @@ Rectangle {
         y: srcTxt.y + 50
         width: 348
         height: 27;
-//        Binding { target: subModel; property: "subData"; value: subTbx.text }
-        Binding { target: model.mainModel.subModel; property: "subData"; value: subTbx.text }
-        Binding { target: subTbx; property: "text"; value: model.mainModel.subModel.subData }
-//        text: model.destinationValue // ?? TODO
+        Binding { target: mainModel.subModel; property: "subData"; value: subTbx.text }
+        Binding { target: subTbx; property: "text"; value: mainModel.subModel.subData }
     }
 
     // 3rd Source, sub sub data
     Text {
         x: srcTxt.x + 40
         y: srcTxt.y + 100
-        text: "3rd Sub Sub Text"
+        text: "SubSubData"
         font.pixelSize: 12
     }
 
@@ -60,9 +58,8 @@ Rectangle {
         y: srcTxt.y + 100
         width: 348
         height: 27;
-        Binding { target: model.mainModel.subModel.subsubModel; property: "subSubData"; value: subSubTbx.text }
-        Binding { target: subSubTbx; property: "text"; value: model.mainModel.subModel.subsubModel.subSubData }
-//        text: model.destinationValue  // ?? TODO
+        Binding { target: mainModel.subModel.subsubModel; property: "subSubData"; value: subSubTbx.text }
+        Binding { target: subSubTbx; property: "text"; value: mainModel.subModel.subsubModel.subSubData }
     }
 
     // destination data
@@ -70,17 +67,17 @@ Rectangle {
     Text {
         x: srcTxt.x
         y: srcTxt.y + 300
-        text: "Dest Text"
+        text: "Encrypted"
         font.pixelSize: 12
     }
 
-    TextBox {
+    Text {
         id: destinationTbx
         x: srcTbx.x
         y: srcTxt.y + 300
         width: 348
         height: 27;
-        text: model.destinationValue        
+        text: mainModel.encrypted
     }
 
     Button {
@@ -88,8 +85,9 @@ Rectangle {
         y: srcTxt.y + 400
         width: 113
         height: 37
-        onClick: model.clearCommand()
+        onClick: mainModel.clearCommand()
     }
+
     Button {
         x: srcTbx.x + 200
         y: srcTxt.y + 400
@@ -97,9 +95,9 @@ Rectangle {
         height: 37
         text: "show"
         onClick:  {
-            console.log(model.sourceValue)
-            console.log(model.mainModel.subModel.subData)
-            console.log(model.mainModel.subModel.subsubModel.subSubData)
+            console.log(mainModel.data)
+            console.log(mainModel.subModel.subData)
+            console.log(mainModel.subModel.subsubModel.subSubData)
         }
     }
 }

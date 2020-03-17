@@ -1,15 +1,17 @@
 ﻿#include "MainSubModel.h"
 #include "MainSubSubModel.h"
+#include "MainModel.h"
 #include "ModelNames.h"
-MainSubModel::MainSubModel(QObject *parent)
+MainSubModel::MainSubModel(MainModel* mainModel, QObject *parent)
     : QObject(parent)
-    , subSubModel_(new MainSubSubModel(this))
+    , mainModel_(mainModel)
+    , subSubModel_(new MainSubSubModel(this, this))
 {
     setObjectName(mainSubModelStr);
-    connect(subSubModel_,
-            &MainSubSubModel::subSubDataChanged,
+    connect(this,
+            &MainSubModel::subDataChanged,
             this,
-            &MainSubModel::slot_update_subsubmodel);
+            &MainSubModel::slotSubDataChanged);
 }
 
 QString MainSubModel::subData() const
@@ -35,8 +37,13 @@ MainSubSubModel *MainSubModel::getSubSubModel()
     return this->subSubModel_;
 }
 
-void MainSubModel::slot_update_subsubmodel(QString arg)
+void MainSubModel::slotSubDataChanged(QString arg)
 {
-    setSubData(arg);
+    this->mainModel_->setData(arg);
     this->subSubModel_->setSubSubData(arg);
+}
+
+MainModel *MainSubModel::getMainModel() const
+{
+    return mainModel_;
 }
