@@ -39,7 +39,8 @@ Rectangle {
         y: srcTxt.y + 50
         width: 348
         height: 27;
-        Binding { target: subModel; property: "subData"; value: subTbx.text }
+//        Binding { target: subModel; property: "subData"; value: subTbx.text }
+        Binding { target: model.mainModel.subModel; property: "subData"; value: subTbx.text }
 //        text: model.destinationValue // ?? TODO
     }
 
@@ -57,7 +58,7 @@ Rectangle {
         y: srcTxt.y + 100
         width: 348
         height: 27;
-        Binding { target: subSubModel; property: "subSubData"; value: subSubTbx.text }
+        Binding { target: model.mainModel.subModel.subsubModel; property: "subSubData"; value: subSubTbx.text }
 //        text: model.destinationValue  // ?? TODO
     }
 
@@ -94,8 +95,8 @@ Rectangle {
         text: "show"
         onClick:  {
             console.log(model.sourceValue)
-            console.log(subModel.subData)
-            console.log(subSubModel.subSubData)
+            console.log(model.mainModel.subModel.subData)
+            console.log(model.mainModel.subModel.subsubModel.subSubData)
         }
     }
 }

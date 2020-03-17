@@ -20,6 +20,8 @@ void MainModel::SetDestinationValue(const QString &value) {
     }
 }
 
+QObject *MainModel::subModel() { return _subModel;}
+
 QString MainModel::HashValue(const QString &value) {
     return QString(
                 QCryptographicHash::hash(value.toUtf8(), QCryptographicHash::Md5)
