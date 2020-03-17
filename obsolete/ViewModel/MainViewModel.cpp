@@ -17,7 +17,7 @@ void MainViewModel::clearCommand() // clear command
 
 QString MainViewModel::GetSourceValue() const
 {
-    return _mainModel->GetSourceValue();
+    return _mainModel->getData();
 }
 
 QString MainViewModel::GetSubData() const
@@ -32,7 +32,7 @@ QString MainViewModel::GetSubSubData() const
 
 QString MainViewModel::GetDestinationValue() const
 {
-    return _mainModel->GetDestinationValue();
+    return _mainModel->getEncrypted();
 }
 
 QObject *MainViewModel::mainModel() {
@@ -41,8 +41,8 @@ QObject *MainViewModel::mainModel() {
 
 void MainViewModel::SetSourceValue(QString &arg)
 {
-    if (_mainModel->GetSourceValue() != arg) {
-        _mainModel->SetSourceValue(arg);
+    if (_mainModel->getData() != arg) {
+        _mainModel->setData(arg);
         SourceChangedEvent(arg);
         SetDestinationValue(arg);
 
@@ -66,8 +66,8 @@ void MainViewModel::SetSubSubData(QString &arg)
 
 void MainViewModel::SetDestinationValue(QString &arg)
 {
-    if (_mainModel->GetDestinationValue() != arg) {
-        _mainModel->SetDestinationValue(arg);
+    if (_mainModel->getEncrypted() != arg) {
+        _mainModel->setEncrypted(arg);
         DestinationChangedEvent(arg);
     }
 

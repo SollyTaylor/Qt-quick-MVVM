@@ -22,7 +22,6 @@ SOURCES += \
         Model/MainModel.cpp \
         Model/MainSubModel.cpp \
         Model/MainSubSubModel.cpp \
-        ViewModel/MainViewModel.cpp \
         main.cpp \
         qmlapplicationviewer/qmlapplicationviewer.cpp
 
@@ -53,5 +52,4 @@ HEADERS += \
     Model/MainSubModel.h \
     Model/MainSubSubModel.h \
     Model/ModelNames.h \
-    ViewModel/MainViewModel.h \
     qmlapplicationviewer/qmlapplicationviewer.h

@@ -6,41 +6,56 @@
 #include <iostream>
 MainModel::MainModel(QObject *parent)
     : QObject(parent),
-    _subModel(new MainSubModel(this)) {
+    _subModel(new MainSubModel(this, this)) {
     setObjectName(mainModelStr);
 
-    connect(this->_subModel,
-            &MainSubModel::subDataChanged,
+    connect(this,
+            &MainModel::dataChanged,
             this,
-            &MainModel::slot_submodel_changed);
+            &MainModel::slotDataChanged);
 
 }
 
-QString MainModel::GetSourceValue() const { return _sourceValue; }
+QString MainModel::getData() const {
+    return data;
+}
 
-void MainModel::SetSourceValue(const QString &value) { _sourceValue = value; }
-
-QString MainModel::GetDestinationValue() const { return _destinationValue; }
-
-void MainModel::SetDestinationValue(const QString &value) {
-    if (!value.isEmpty()) {
-        _destinationValue = HashValue(value);
-    } else {
-        _destinationValue = value;
+void MainModel::setData(const QString &d) {
+    if (data != d) {
+        data = d;
+        emit dataChanged(d);
     }
+}
+
+QString MainModel::getEncrypted() const {
+    return encrypted;
+}
+
+void MainModel::setEncrypted(const QString &value) {
+    if (!value.isEmpty()) {
+        encrypted = HashValue(value);
+    } else {
+        encrypted = value;
+    }
+    emit encryptedChanged(encrypted);
 }
 
 QObject *MainModel::subModel() { return _subModel;}
 
-void MainModel::slot_submodel_changed(QString arg)
+void MainModel::clearCommand()
 {
-    SetSourceValue(arg);
-    this->_subModel->setSubData(arg);
-    this->_subModel->getSubSubModel()->setSubSubData(arg);
+    setEncrypted("");
+    setData("");
 }
 
+void MainModel::slotDataChanged(QString arg)
+{
+    this->_subModel->setSubData(arg);
+    this->_subModel->getSubSubModel()->setSubSubData(arg);
+    setEncrypted(arg);
+}
+
+
 QString MainModel::HashValue(const QString &value) {
-    return QString(
-                QCryptographicHash::hash(value.toUtf8(), QCryptographicHash::Md5)
-                .toHex());
+    return QString(QCryptographicHash::hash(value.toUtf8(), QCryptographicHash::Md5).toHex());
 }

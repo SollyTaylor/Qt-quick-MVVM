@@ -1,17 +1,26 @@
-﻿#include "ViewModel/MainViewModel.h"
-#include "qmlapplicationviewer.h"
+﻿
 #include <QApplication>
 #include <QQmlContext>
+#include <QFont>
+
+#include "MainModel.h"
+#include "qmlapplicationviewer.h"
 #include "ModelNames.h"
+
+
 int main(int argc, char *argv[]) {
   QApplication app(argc, argv);
 
   QmlApplicationViewer viewer;
 
-  MainModel* mainModel = new MainModel(&app);
+  QFont font("Courier New");
+  font.setStyleHint(QFont::Monospace);
+  QApplication::setFont(font);
 
-  viewer.rootContext()->setContextProperty("model",
-                                           new MainViewModel(mainModel));
+//  MainModel* mainModel = new MainModel(&app);
+
+  viewer.rootContext()->setContextProperty("mainModel",
+                                           new MainModel(&app));
 
   viewer.setMainQmlFile(QUrl("qrc:/qml/qml/QtQuickMvvmExample/MainView.qml"));
   viewer.showExpanded();
